@@ -62,6 +62,17 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
 
+  rabbitmq:
+    container_name: rabbitmq 
+    environment:
+      RABBITMQ_DEFAULT_USER: quiz_regbot
+      RABBITMQ_DEFAULT_PASS: "TOP_SECRET"
+    image: ${RABBITMQ_IMAGE}
+    networks:
+      - network
+    ports:
+      - 5672:5672
+
 networks:
   network:
     driver: bridge
