@@ -41,6 +41,15 @@ services:
     volumes:
       - elasticsearch-node-2-data:/usr/share/elasticsearch/data
 
+  kibana:
+    command: kibana -e "http://elasticsearch-node-1:9200,http://elasticsearch-node-2:9200"
+    container_name: kibana
+    image: ${KIBANA_IMAGE}
+    networks:
+      - network
+    ports:
+      - 5601:5601
+
 networks:
   network:
     driver: bridge
